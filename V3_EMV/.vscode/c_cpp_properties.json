@@ -1,0 +1,32 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/Program Files (x86)/Castles/VEGA3000/include/**",
+                "C:/Program Files (x86)/Castles/UPT1000/include/**",
+                "C:/cygwin/usr/include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "C:/cygwin/bin/gcc.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64",
+            "browse": {
+                "path": [
+                    "${workspaceRoot}/**",
+                    "C:/Program Files (x86)/Castles/VEGA3000/include",
+                    "C:/Program Files (x86)/Castles/UPT1000/include",
+                    "C:/cygwin/usr/include"
+                ]
+            },
+            "limitSymbolsToIncludedHeaders": true
+        }
+    ],
+    "version": 4
+}
