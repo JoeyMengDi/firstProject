@@ -1,0 +1,74 @@
+USHORT MultiCardGetCard(BYTE pbyATQA, BYTE pbySAK, BYTE pbyCSN, BYTE pbyCSNLen)
+{
+    USHORT api_ret, api_2nd_try_ret, api_RAT_ret;
+    BYTE local_ATQA[2];
+    BYTE local_SAK;
+    BYTE local_CSN_LEN;
+    BYTE local_CSN[10];
+    BYTE local2_ATQA[2];
+    BYTE local2_SAK;
+    BYTE local2_CSN_LEN;
+    BYTE local2_CSN[10];
+    CTOS_CLTypeAHalt();
+    CTOS_CLDESELECT();//add by sandy at 20110928 for 14443-3 & 14443-4 Switch
+    CTOS_CLPowerOff();
+    CTOS_Delay(5);
+    CTOS_CLPowerOn();
+    CTOS_Delay(5);
+    // Detect any card?
+    api_ret = CTOS_CLTypeAActiveFromIdle( 0, local_ATQA, &local_SAK, local_CSN, &local_CSN_LEN );
+    if(api_ret==0x83E8)/*MULTI CARD*/
+        return ERROR_PRET_RFID_ACCESS_MULTI;
+    if ( api_ret != d_OK ){
+        //add by sandy at 20110928 for ezCube
+        //U0Printf("1");
+        CTOS_Delay(3);
+        api_ret = CTOS_CLTypeAActiveFromIdle( 0, local_ATQA, &local_SAK, local_CSN, &local_CSN_LEN );
+        //end add
+        if(api_ret==0x83E8)/*MULTI CARD*/
+                return ERROR_PRET_RFID_ACCESS_MULTI;
+        if ( api_ret != d_OK ){
+            //U0Printf("1-1=%04X",api_ret);
+            return ERROR_PRET_RFID_ACCESS_FAIL;
+        }
+    }
+    // Ask the found card to sleep
+    api_ret = CTOS_CLTypeAHalt();
+    if ( api_ret != d_OK ){
+        //U0Printf("2");
+        return ERROR_PRET_RFID_ACCESS_FAIL;
+    }
+    // Detect another card
+    api_2nd_try_ret = CTOS_CLTypeAActiveFromIdle( 0, local2_ATQA, &local2_SAK, local2_CSN, &local2_CSN_LEN );
+    if(api_2nd_try_ret==0x83E8)/*MULTI CARD*/
+            return ERROR_PRET_RFID_ACCESS_MULTI;
+    if ( api_2nd_try_ret == d_OK ){
+        // if we find another card, this is not what we want
+        // shutdown the second card.
+        //CTOS_CLDESELECT();
+        CTOS_CLTypeAHalt();
+        //U0Printf("3");
+    }
+    // activate the 1st card
+    api_ret = CTOS_CLTypeAActiveFromHalt( 0, local_ATQA, &local_SAK, local_CSN, local_CSN_LEN );
+    if(api_ret==0x83E8)/*MULTI CARD*/
+        return ERROR_PRET_RFID_ACCESS_MULTI;
+    if ( api_ret != d_OK ){
+        //U0Printf("4");
+        return ( api_2nd_try_ret == d_OK ) ? ERROR_PRET_RFID_ACCESS_MULTI :  ERROR_PRET_RFID_ACCESS_FAIL;
+    }
+    // if there are more than two cards, deactive them all and return error
+    if ( api_2nd_try_ret == d_OK ){
+        // if we find another card, this is not what we want
+        // shutdown the 1st card.
+        // CTOS_CLDESELECT();
+        CTOS_CLTypeAHalt();
+        //U0Printf("5");
+        return ERROR_PRET_RFID_ACCESS_MULTI;
+    }
+    memcpy(pbyATQA,local_ATQA,sizeof(local_ATQA));
+    *pbySAK = local_SAK ;
+    memcpy(pbyCSN,local_CSN,sizeof(local_CSN));
+    *pbyCSNLen = local_CSN_LEN;
+    return d_OK;
+}
