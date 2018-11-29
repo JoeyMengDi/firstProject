@@ -97,7 +97,10 @@ void CDebugInfo::DebugInfo(PCSTR pSourceFileName, int iLineNo, DWORD dwLevel, PC
     bzero(pszBuf, nLen);
     vsprintf(pszBuf, pFormat, argList);
     va_end(argList);
-    
+	
+	FILE* fp = fopen("tmplog", "a+");
+
+#if 0    
     cData += ":";
     cData += pszBuf;
     cData += "\r\n";
@@ -120,6 +123,7 @@ void CDebugInfo::DebugInfo(PCSTR pSourceFileName, int iLineNo, DWORD dwLevel, PC
             pFunCB(DEBUG_MSG, (WPARAM) cData.PushZero(), m_dwDebugLevel);
         }
     }
+#endif	
 }
 
 WORD CDebugInfo::DebugRetCode(PCSTR lpFileName, int iLine, PCSTR lpStr, WORD wRet)
