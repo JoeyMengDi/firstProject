@@ -1,0 +1,7 @@
+10:15:51 0x4004D000 appmain.cpp-00027:MultiCardGetCard-Entry
+10:15:51 0x4004D000 appmain.cpp-00028:api_ret:start
+10:15:51 0x4004D000 appmain.cpp-00049:api_ret:end
+10:15:51 0x4004D000 appmain.cpp-00054:api_ret:erro1
+10:15:51 0x4004D000 appmain.cpp-00056:api_ret:erro2
+10:15:51 0x4004D000 appmain.cpp-00064:api_ret:333
+10:15:51 0x4004D000 appmain.cpp-00065:api_ret:83BC

@@ -1,0 +1,8 @@
+{
+    global:
+			TestAdd;
+            TestSub;
+            TestMultiple;
+            TestDiv;
+    local: *;
+};
