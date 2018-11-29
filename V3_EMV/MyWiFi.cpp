@@ -85,7 +85,7 @@ void MyWiFi::WifiSocktProcess(PCSTR pszIp, USHORT usPort, INT nTimeOut, const CB
         }
         if ((dwState & d_WIFI_STATE_AP_CONNECTING) == 0 && (dwState & d_WIFI_STATE_AP_CONNECTED) == 0) {
             //CTOS_LCDTPrintXY(1, 9, (BYTE*) "WIFI Contect Fail");
-            DEBUG_INFO(DEBUGINFO_NORMAL, "WIFI Contect Fail\n");
+            //DEBUG_INFO(DEBUGINFO_NORMAL, "WIFI Contect Fail\n");
             //CTOS_KBDGet(&key);
             break;
         }

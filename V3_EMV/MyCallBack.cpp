@@ -30,11 +30,10 @@ void MyCallBack::OnErrorMsg(IN char *pStrMsg) {
 void MyCallBack::OnEMVConfigActive(INOUT BYTE* pActiveIndex) {
     pActiveIndex = 0;
     //If not providing thisfunction, 
-    //the active configuration is according to the configuration file.
+    //the active configuration is according to the configuration file.  
 }
 
 USHORT MyCallBack::OnTxnDataGet(OUT EMV_TXNDATA *pTxnData) {
-
     DEBUG_ENTRY();
 
     BYTE byDate[6];
@@ -597,12 +596,12 @@ void MyCallBack::OnTxnOnline(IN ONLINE_PIN_DATA *pOnlinePINData, OUT EMV_ONLINE_
         //        pOnlineResponseData->bAction = d_ONLINE_ACTION_APPROVAL;
         //CUIDisplay cUI;
         UINT unRet = 0;
-       // unRet = cUI.MsgBox((char*) "Call Your Bank, Approve or Decline?", 0);
+        // unRet = cUI.MsgBox((char*) "Call Your Bank, Approve or Decline?", 0);
         //if (unRet == d_KBD_ENTER) {
-            pOnlineResponseData->bAction = d_ONLINE_ACTION_APPROVAL;
-//        } else {
-//            pOnlineResponseData->bAction = d_ONLINE_ACTION_DECLINE;
-//        }
+        pOnlineResponseData->bAction = d_ONLINE_ACTION_APPROVAL;
+        //        } else {
+        //            pOnlineResponseData->bAction = d_ONLINE_ACTION_DECLINE;
+        //        }
     }
 
     CByteStream cAuthData;
@@ -610,7 +609,7 @@ void MyCallBack::OnTxnOnline(IN ONLINE_PIN_DATA *pOnlinePINData, OUT EMV_ONLINE_
 
     cEmvBase.GetData((PBYTE) "\x91", &cARPC, cAuthData, FALSE);
     DEBUG_STREAM(DEBUGINFO_NORMAL, &cAuthData, "Issuer Authentication Data ");
-    
+
     pOnlineResponseData->pAuthorizationCode = cARC.GetBuffer(); // \x8A\x02\x30\x35    \x30\x35     \x30\x30
     pOnlineResponseData->pIssuerAuthenticationData = cAuthData.GetBuffer(); //  \xA8\xF6\x59\x85\xE3\x1B\xB2\xD8\x30\x35
     pOnlineResponseData->IssuerAuthenticationDataLen = cAuthData.GetLength(); //11  12 

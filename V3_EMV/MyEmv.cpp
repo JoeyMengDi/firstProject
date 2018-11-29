@@ -13,7 +13,6 @@
 
 #include "MyEmv.h"
 
-
 MyEmv::MyEmv() {
 
     memset(&emv_event, 0x00, sizeof (EMV_EVENT));
@@ -64,26 +63,26 @@ MyEmv::MyEmv() {
     pszConfigFileName = (char*) "emv_config.xml";
 
     emv_event.Version = 1;
-    emv_event.OnDisplayShow = MyCallBack::OnDisplayShow;
-    emv_event.OnDisplayShow = MyCallBack::OnDisplayShow;
-    emv_event.OnErrorMsg = MyCallBack::OnErrorMsg;
-    emv_event.OnEMVConfigActive = MyCallBack::OnEMVConfigActive;
-    emv_event.OnHashVerify = NULL;
+    //    emv_event.OnDisplayShow = MyCallBack::OnDisplayShow;
+    //    emv_event.OnDisplayShow = MyCallBack::OnDisplayShow;
+    //    emv_event.OnErrorMsg = MyCallBack::OnErrorMsg;
+    //    emv_event.OnEMVConfigActive = MyCallBack::OnEMVConfigActive;
+    //    emv_event.OnHashVerify = NULL;
     emv_event.OnTxnDataGet = MyCallBack::OnTxnDataGet;
     emv_event.OnAppList = MyCallBack::OnAppList;
     emv_event.OnAppSelectedConfirm = MyCallBack::OnAppSelectedConfirm;
-    emv_event.OnTerminalDataGet = MyCallBack::OnTerminalDataGet;
-    emv_event.OnCAPKGet = MyCallBack::OnCAPKGet;
+    //    emv_event.OnTerminalDataGet = MyCallBack::OnTerminalDataGet;
+    //    emv_event.OnCAPKGet = MyCallBack::OnCAPKGet;
     emv_event.OnGetPINNotify = MyCallBack::OnGetPINNotify;
-    emv_event.OnOnlinePINBlockGet = MyCallBack::OnOnlinePINBlockGet;
-    emv_event.OnOfflinePINBlockGet = MyCallBack::OnOfflinePINBlockGet;
-    emv_event.OnOfflinePINVerifyResult = MyCallBack::OnOfflinePINVerifyResult;
+    //    emv_event.OnOnlinePINBlockGet = MyCallBack::OnOnlinePINBlockGet;
+    //    emv_event.OnOfflinePINBlockGet = MyCallBack::OnOfflinePINBlockGet;
+    //    emv_event.OnOfflinePINVerifyResult = MyCallBack::OnOfflinePINVerifyResult;
     emv_event.OnTxnOnline = MyCallBack::OnTxnOnline;
-    emv_event.OnTxnIssuerScriptResult = MyCallBack::OnTxnIssuerScriptResult;
+    //    emv_event.OnTxnIssuerScriptResult = MyCallBack::OnTxnIssuerScriptResult;
     emv_event.OnTxnResult = MyCallBack::OnTxnResult;
-    emv_event.OnTotalAmountGet = MyCallBack::OnTotalAmountGet;
-    emv_event.OnExceptionFileCheck = MyCallBack::OnExceptionFileCheck;
-    emv_event.OnCAPKRevocationCheck = MyCallBack::OnCAPKRevocationCheck;
+    //    emv_event.OnTotalAmountGet = MyCallBack::OnTotalAmountGet;
+    //    emv_event.OnExceptionFileCheck = MyCallBack::OnExceptionFileCheck;
+    //    emv_event.OnCAPKRevocationCheck = MyCallBack::OnCAPKRevocationCheck;
 }
 
 MyEmv::MyEmv(EMV_EVENT &stEEvt, const char *pszConfigFN) {
@@ -95,6 +94,7 @@ MyEmv::~MyEmv() {
 }
 
 USHORT MyEmv::InitEmv() {
+
     DEBUG_ENTRY();
     USHORT usRet;
     usRet = EMV_Initialize(&emv_event, pszConfigFileName);
