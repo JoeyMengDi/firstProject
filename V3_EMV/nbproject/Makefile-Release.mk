@@ -58,11 +58,13 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lcaethernet -lcafont -lcafs -lcakms -lcalcd -lcamodem -lcapmodem -lcaprt -lcartc -lcauart -lcauldpm -lcausbh -lcagsm -lcabarcode -lpthread -ldl -lcaclvw -lcaclentry -lcaclmdl -lcatls -lctosapi -lcrypto -lcurl -lssl -lz -lfreetype -lcaemvl2 -lcaemvl2ap
+LDLIBSOPTIONS=-lcaethernet -lcafont -lcafs -lcakms -lcalcd -lcamodem -lcapmodem -lcaprt -lcartc -lcauart -lcauldpm -lcausbh -lcagsm -lcabarcode -lpthread -ldl -lcaclvw -lcaclentry -lcaclmdl -lcatls -lctosapi -lcrypto -lcurl -lssl -lz -lfreetype -lcaemvl2 -lcaemvl2ap ./libCollisTLV.so
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
 	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk dist/V3/App/V3_EMV.exe
+
+dist/V3/App/V3_EMV.exe: ./libCollisTLV.so
 
 dist/V3/App/V3_EMV.exe: ${OBJECTFILES}
 	${MKDIR} -p dist/V3/App
@@ -102,6 +104,8 @@ ${OBJECTDIR}/appmain.o: appmain.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
+	${RM} -r dist/V3/App/libCollisTLV.so
+	${RM} dist/V3/App/V3_EMV.exe
 
 # Subprojects
 .clean-subprojects:

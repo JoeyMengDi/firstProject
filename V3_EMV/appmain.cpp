@@ -27,6 +27,12 @@ PAYMENT_DATA stPayData;
  **/
 int main(int argc, char *argv[]) {
     DEBUG_ENABLE(1, 1, 1, NULL);
+    
+//    DEBUG_BYTEBUF(DEBUGINFO_NORMAL,(BYTE*)"123456",7,"start:");
+//    DEBUG_INFO(DEBUGINFO_NORMAL, "hello");
+//    DEBUG_INFO(DEBUGINFO_NORMAL, "hello");
+//    DEBUG_INFO(DEBUGINFO_NORMAL, "hello");
+    
     BYTE byKey;
     USHORT usRet;
     BOOL bCardInserted;

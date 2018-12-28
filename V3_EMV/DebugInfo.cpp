@@ -98,9 +98,9 @@ void CDebugInfo::DebugInfo(PCSTR pSourceFileName, int iLineNo, DWORD dwLevel, PC
     vsprintf(pszBuf, pFormat, argList);
     va_end(argList);
 	
-	FILE* fp = fopen("tmplog", "a+");
+	//FILE* fp = fopen("tmplog", "a+");
 
-#if 0    
+#if 1    
     cData += ":";
     cData += pszBuf;
     cData += "\r\n";

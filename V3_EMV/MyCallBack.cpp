@@ -548,20 +548,20 @@ void MyCallBack::OnTxnOnline(IN ONLINE_PIN_DATA *pOnlinePINData, OUT EMV_ONLINE_
     //    cARQC.Write("\x9A\x03\x17\x08\x14\x9F\x21\x03\x18\x13\x00", 11);
 
     USHORT usRet = 0;
-    //usRet = CTOS_EthernetOpenEx();
-    MyWiFi myWifi;
-    myWifi.OpenWiFi();
+    usRet = CTOS_EthernetOpenEx();
+    //    MyWiFi myWifi;
+    //    myWifi.OpenWiFi();
     if (usRet != 0x0000) {
         DEBUG_INFO(DEBUGINFO_NORMAL, "EthernetOpen Failed: %04X", usRet);
     } else {
-        //usRet = CollisTLVProcess("192.168.31.172", 5020, 3, cARQC, MSG_FINANCIAL_TRANSACTION, cARPC);
+        usRet = CollisTLVProcess("192.168.31.176", 5020, 3, cARQC, MSG_FINANCIAL_TRANSACTION, cARPC);
         //usRet = 
-        myWifi.WifiSocktProcess("192.168.31.176", 7777, 3, cARQC, MSG_FINANCIAL_TRANSACTION, cARPC);
+        //myWifi.WifiSocktProcess("192.168.31.176", 7777, 3, cARQC, MSG_FINANCIAL_TRANSACTION, cARPC);
         DEBUG_INFO(DEBUGINFO_NORMAL, "CollisTLVProcess ret: %04X", usRet);
     }
 
-    //CTOS_EthernetClose();
-    myWifi.CloseWiFi();
+    CTOS_EthernetClose();
+    //myWifi.CloseWiFi();
     DEBUG_STREAM(DEBUGINFO_NORMAL, &cARPC, "ARPC ");
 
     if (cARPC.GetLength() == 0) {

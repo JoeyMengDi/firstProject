@@ -42,7 +42,7 @@ build: .build-pre .build-impl .build-post
 
 .build-pre:
 # Add your pre 'build' code here...
-
+	#cp ./libCollisTLV.so ./dist/V3/App/
 .build-post:
 # Add your post 'build' code here...
 

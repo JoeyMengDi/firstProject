@@ -100,6 +100,7 @@
             <linkerLibLibItem>freetype</linkerLibLibItem>
             <linkerLibLibItem>caemvl2</linkerLibLibItem>
             <linkerLibLibItem>caemvl2ap</linkerLibLibItem>
+            <linkerLibFileItem>./libCollisTLV.so</linkerLibFileItem>
           </linkerLibItems>
           <commandLine>-L . "-L${SDKV3LIB}" "-L${SDKV3LIBN}"</commandLine>
         </linkerTool>

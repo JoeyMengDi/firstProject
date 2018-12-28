@@ -66,23 +66,23 @@ MyEmv::MyEmv() {
     //    emv_event.OnDisplayShow = MyCallBack::OnDisplayShow;
     //    emv_event.OnDisplayShow = MyCallBack::OnDisplayShow;
     //    emv_event.OnErrorMsg = MyCallBack::OnErrorMsg;
-    //    emv_event.OnEMVConfigActive = MyCallBack::OnEMVConfigActive;
-    //    emv_event.OnHashVerify = NULL;
+    emv_event.OnEMVConfigActive = MyCallBack::OnEMVConfigActive;
+    emv_event.OnHashVerify = NULL;
     emv_event.OnTxnDataGet = MyCallBack::OnTxnDataGet;
     emv_event.OnAppList = MyCallBack::OnAppList;
     emv_event.OnAppSelectedConfirm = MyCallBack::OnAppSelectedConfirm;
-    //    emv_event.OnTerminalDataGet = MyCallBack::OnTerminalDataGet;
-    //    emv_event.OnCAPKGet = MyCallBack::OnCAPKGet;
+    emv_event.OnTerminalDataGet = MyCallBack::OnTerminalDataGet;
+    emv_event.OnCAPKGet = MyCallBack::OnCAPKGet;
     emv_event.OnGetPINNotify = MyCallBack::OnGetPINNotify;
-    //    emv_event.OnOnlinePINBlockGet = MyCallBack::OnOnlinePINBlockGet;
-    //    emv_event.OnOfflinePINBlockGet = MyCallBack::OnOfflinePINBlockGet;
-    //    emv_event.OnOfflinePINVerifyResult = MyCallBack::OnOfflinePINVerifyResult;
+    emv_event.OnOnlinePINBlockGet = MyCallBack::OnOnlinePINBlockGet;
+    emv_event.OnOfflinePINBlockGet = MyCallBack::OnOfflinePINBlockGet;
+    emv_event.OnOfflinePINVerifyResult = MyCallBack::OnOfflinePINVerifyResult;
     emv_event.OnTxnOnline = MyCallBack::OnTxnOnline;
-    //    emv_event.OnTxnIssuerScriptResult = MyCallBack::OnTxnIssuerScriptResult;
+    emv_event.OnTxnIssuerScriptResult = MyCallBack::OnTxnIssuerScriptResult;
     emv_event.OnTxnResult = MyCallBack::OnTxnResult;
-    //    emv_event.OnTotalAmountGet = MyCallBack::OnTotalAmountGet;
-    //    emv_event.OnExceptionFileCheck = MyCallBack::OnExceptionFileCheck;
-    //    emv_event.OnCAPKRevocationCheck = MyCallBack::OnCAPKRevocationCheck;
+    emv_event.OnTotalAmountGet = MyCallBack::OnTotalAmountGet;
+    emv_event.OnExceptionFileCheck = MyCallBack::OnExceptionFileCheck;
+    emv_event.OnCAPKRevocationCheck = MyCallBack::OnCAPKRevocationCheck;
 }
 
 MyEmv::MyEmv(EMV_EVENT &stEEvt, const char *pszConfigFN) {
